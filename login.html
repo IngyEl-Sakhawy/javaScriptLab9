@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #error {
+            color: #ff6347;
+            margin-top: 16px;
+            text-align: left;
+        }
+
+        #error p {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+<form>
+    <label for="email">Email</label>
+    <input required type="email" id="email">
+
+    <label for="password">Password</label>
+    <input required type="password" id="password">
+
+    <button onclick="check()" value="Submit" name="Submit">Submit</button>
+
+    <div id="error"></div>
+</form>
+
+<script>
+    function check() {
+        var name = document.getElementById('email').value;
+        var passwd = document.getElementById('password').value;
+        let constraints = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        var mainhtml = document.getElementById("error");
+
+        if (constraints.test(passwd)) {
+            alert("Welcome to your page, " + name);
+        } else {
+            if (!/(?=.*[a-z])/.test(passwd)) {
+                mainhtml.innerHTML += "<p>Please use lowercase.</p>";
+            } 
+            if (!/(?=.*[A-Z])/.test(passwd)){
+                mainhtml.innerHTML += "<p>Please use uppercase.</p>";
+            } 
+            if (!/(?=.*\d)/.test(passwd)){
+                mainhtml.innerHTML += "<p>Please use numbers.</p>";
+            }  
+            if (!/(?=.*[@$!%*?&])/.test(passwd)){
+                mainhtml.innerHTML += "<p>Please use special characters.</p>";
+            } 
+            if (passwd.length < 8){
+                mainhtml.innerHTML += "<p>Please use at least 8 characters.</p>";
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
